@@ -9,6 +9,8 @@ import {
 import { MaterialIcons, Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { Header } from '../components/Header';
 import { Shield } from '../components/Shield';
+import { ButtonSOS } from '../components/ButtonSOS';
+import { Button } from 'react-native-web';
 
 
 const HomeScreen = ({navigation}) => {
@@ -18,7 +20,6 @@ const HomeScreen = ({navigation}) => {
             {/* Encabezado superior */}
             <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={styles.scrollContainerHeader}>
                 <Header />
-                <Shield />
             </ScrollView>
             
 
@@ -28,9 +29,7 @@ const HomeScreen = ({navigation}) => {
             <Text style={styles.emergencySubtitle}>Presiona el botón para especificar y enviar una alerta</Text>
 
             {/* Botón SOS */}
-            <Pressable style={styles.sosButton}>
-            <Text style={styles.sosText}>SOS</Text>
-            </Pressable>
+            <ButtonSOS />
 
             {/* Opciones */}
             <Text style={styles.securityTitle}>Siempre ten seguridad</Text>

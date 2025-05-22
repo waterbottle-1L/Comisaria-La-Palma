@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export function LoginForm(){
     return(
-        <SafeAreaView style={styles.formContainer}>
+        <View style={styles.formContainer}>
           <View style={styles.boxContainer}>
           <TextInput
             placeholder="Correo electrónico"
@@ -24,16 +24,15 @@ export function LoginForm(){
 
           </View>
 
-          </SafeAreaView>
+          </View>
     );
 };
 
 const styles = StyleSheet.create({
     formContainer: {
-    flex: 1,
-    paddingTop: 245,
-    justifyContent: "center",
-    alignItems: "center",
+        alignItems: "center",
+        height: 300, // Ajusta la altura según sea necesario
+        width: "100%",
     },
     boxContainer: {
     width: "80%", // Ancho del cuadro

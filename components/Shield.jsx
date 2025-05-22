@@ -3,13 +3,13 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export function Shield() {
     return(
-        <SafeAreaView style={styles.logoContainer}>
+        <View style={styles.logoContainer}>
                 <Image
                 source={require('../assets/images/escudo.png')} // Asegúrate de colocar la imagen en la carpeta /assets
                 style={styles.logoImage}
                 resizeMode="contain"
                 />
-        </SafeAreaView>
+        </View>
     );
 };
     const styles = StyleSheet.create({
@@ -25,14 +25,9 @@ export function Shield() {
             resizeMode: "contain", // Mantiene las proporciones del logo
         },
         logoContainer: {
-            justifyContent: "center",
             alignItems: "center",
             height: 300, // Ajusta la altura según sea necesario
             width: "100%",
-            /* backgroundColor: "#004d28", */
-            borderBottomLeftRadius: 200, // Curvatura en la parte inferior izquierda
-            borderBottomRightRadius: 195,
-            position: "absolute",
         }
   },
 );
