@@ -8,6 +8,8 @@ import RegisterScreen from "./screens/RegisterScreen";
 import { enableScreens } from "react-native-screens";
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
+import PoliciaScreen from "./screens/PoliciaScreen";
+import AdminScreen from "./screens/AdminScreen";
 //const icon = require("./assets/images/original.jpg");
 
 enableScreens();
@@ -32,6 +34,16 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Police"
+            component={PoliciaScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Admin"
+            component={AdminScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

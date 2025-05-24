@@ -1,12 +1,23 @@
 import {useState} from 'react';
-import {StyleSheet, Pressable, Text, View} from 'react-native';
+import {StyleSheet, Pressable, Text, View, Dimensions} from 'react-native';
+import MapView from 'react-native-maps';
 
 function ComponenteActivo() {
   return <Text></Text>;
 }
 
 function ComponenteInactivo() {
-  return <Text >Un policia lo atendera en breve</Text>;
+  return (
+    <MapView
+        style={styles.mapa}
+        initialRegion={{
+          latitude: 37.78825,        // Latitud inicial
+          longitude: -122.4324,      // Longitud inicial
+          latitudeDelta: 0.0922,     // Zoom vertical
+          longitudeDelta: 0.0421,    // Zoom horizontal
+        }}
+      />
+  );
 }
 
 export function ButtonSOS(){
@@ -57,5 +68,9 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 32,
     fontWeight: 'bold',
+  },
+  mapa: {
+    width: 300,
+    height: 200,
   },
 });

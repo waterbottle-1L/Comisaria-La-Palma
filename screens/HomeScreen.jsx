@@ -32,30 +32,7 @@ const HomeScreen = ({navigation}) => {
             <ButtonSOS />
 
             {/* Opciones */}
-            <Text style={styles.securityTitle}>Siempre ten seguridad</Text>
-            <Text style={styles.securitySubtitle}>Revisa más opciones</Text>
-
-            <View style={styles.optionsGrid}>
-            <Pressable style={styles.optionCard}>
-            <FontAwesome5 name="exclamation-circle" size={20} color="#014421" />
-            <Text style={styles.optionText}>Denunciar</Text>
-            </Pressable>
-
-            <Pressable style={styles.optionCard}>
-            <MaterialIcons name="description" size={20} color="#014421" />
-            <Text style={styles.optionText}>Tus denuncias y más</Text>
-            </Pressable>
-
-            <Pressable style={styles.optionCard}>
-            <Ionicons name="medical" size={20} color="#014421" />
-            <Text style={styles.optionText}>Servicio de Emergencia</Text>
-            </Pressable>
-
-            <Pressable style={styles.optionCard}>
-            <Ionicons name="map" size={20} color="#014421" />
-            <Text style={styles.optionText}>Ver Zonas Seguras</Text>
-            </Pressable>
-            </View>
+            
       </ScrollView>
 
       {/* Footer */}
