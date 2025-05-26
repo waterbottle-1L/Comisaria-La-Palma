@@ -37,11 +37,13 @@ const HomeScreen = ({navigation}) => {
 
       {/* Footer */}
       <View style={styles.footer}>
-        <Pressable style={styles.footerItem}>
+        <Pressable style={styles.footerItem}
+          onPress={() => navigation.navigate('Home')}>
           <Ionicons name="home" size={22} color="#F9FF33" />
           <Text style={styles.footerTextActive}>Inicio</Text>
         </Pressable>
-        <Pressable style={styles.footerItem}>
+        <Pressable style={styles.footerItem}
+          onPress={() => navigation.navigate('HistorialCliDen')}>
           <Ionicons name="person" size={22} color="#fff" />
           <Text style={styles.footerText}>Perfil</Text>
         </Pressable>

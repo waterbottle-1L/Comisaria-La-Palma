@@ -10,7 +10,9 @@ import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import PoliciaScreen from "./screens/PoliciaScreen";
 import AdminScreen from "./screens/AdminScreen";
-//const icon = require("./assets/images/original.jpg");
+import HistorialCliDen from "./screens/HistorialCliDen";
+
+const icon = require("./assets/images/original.jpg");
 
 enableScreens();
 
@@ -44,6 +46,11 @@ export default function App() {
           <Stack.Screen
             name="Admin"
             component={AdminScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="HistorialCliDen"
+            component={HistorialCliDen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

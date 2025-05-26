@@ -19,6 +19,8 @@ export function LoginForm(){
       navigation.replace('Home');
     } else if (entrada === 'policia') {
       navigation.replace('Police');
+    } else if (entrada === 'historialcliden') {
+      navigation.replace('HistorialCliDen');
     } else {
       Alert.alert('Cuenta inválida', 'Escribe una cuenta válida');
     }
