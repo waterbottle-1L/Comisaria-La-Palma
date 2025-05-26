@@ -20,10 +20,11 @@ export function Header(){
 };
 const styles = StyleSheet.create({
     header: {
-      height: "10%",
+      height: "13%",
       width: "100%", // Asegura que ocupe todo el ancho de la pantalla
       alignItems: "center",
       backgroundColor: "#004d28", // Fondo verde oscuro
+      justifyContent: 'center',
 
   },
   logo: {
