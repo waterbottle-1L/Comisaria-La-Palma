@@ -19,36 +19,35 @@ export function LoginForm(){
       navigation.replace('Home');
     } else if (entrada === 'policia') {
       navigation.replace('Police');
-    } else if (entrada === 'historialcliden') {
-      navigation.replace('HistorialCliDen');
+    } else if (entrada === 'registro denuncia') {
+      navigation.replace('RegistroDenuncia');
     } else {
       Alert.alert('Cuenta inválida', 'Escribe una cuenta válida');
     }
   };
     return(
         <View style={styles.formContainer}>
-          <View style={styles.boxContainer}>
-          <TextInput
-            placeholder="Nombre de usuario"
-            onChangeText={setTipoCuenta}
-            value={tipoCuenta}
-            placeholderTextColor="#ccc"
-            style={styles.input}
-          />
-          <View style={styles.passwordContainer}>
-            <TextInput
-              placeholder="Contraseña"
-              placeholderTextColor="#ccc"
-              secureTextEntry
-              style={styles.inputPassword}
-            />
-            <MaterialCommunityIcons name="eye-off" size={20} color="#ccc" />
-          </View>
-
-          </View>
-            <Pressable style={styles.loginButton} onPress={manejarLogin}>
-                <Text style={styles.loginButtonText}>Iniciar sesión</Text>  
-            </Pressable> 
+            <View style={styles.boxContainer}>
+                <TextInput
+                  placeholder="Nombre de usuario"
+                  onChangeText={setTipoCuenta}
+                  value={tipoCuenta}
+                  placeholderTextColor="#ccc"
+                  style={styles.input}
+                />
+                <View style={styles.passwordContainer}>
+                  <TextInput
+                    placeholder="Contraseña"
+                    placeholderTextColor="#ccc"
+                    secureTextEntry
+                    style={styles.inputPassword}
+                  />
+                  <MaterialCommunityIcons name="eye-off" size={20} color="#ccc" />
+                </View>
+            </View>
+                <Pressable style={styles.loginButton} onPress={manejarLogin}>
+                    <Text style={styles.loginButtonText}>Iniciar sesión</Text>  
+                </Pressable> 
           </View>
     );
 };
@@ -58,6 +57,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         height: 300, // Ajusta la altura según sea necesario
         width: "100%",
+        
     },
     boxContainer: {
         width: "80%", // Ancho del cuadro
@@ -94,7 +94,9 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         borderRadius: 10,
         alignItems: "center",
-        marginBottom: 20,
+        marginTop: "2%",
+        /* marginBottom: 20, */
+        width: "75%", // Ancho del botón
     },
     loginButtonText: {
         color: "#D3FF57",
