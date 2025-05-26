@@ -15,14 +15,8 @@ import { Button } from 'react-native-web';
 
 const HomeScreen = ({navigation}) => {
     return(
-        <SafeAreaView style={styles.container}>
-      
-            {/* Encabezado superior */}
-            <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={styles.scrollContainerHeader}>
+        <View style={styles.container}>
                 <Header />
-            </ScrollView>
-            
-
       {/* Contenido */}
             <ScrollView contentContainerStyle={styles.content}>
             <Text style={styles.emergencyTitle}>¿Tienes una emergencia?</Text>
@@ -46,7 +40,7 @@ const HomeScreen = ({navigation}) => {
           <Text style={styles.footerText}>Perfil</Text>
         </Pressable>
       </View>
-    </SafeAreaView>
+    </View>
     );
 };
 
