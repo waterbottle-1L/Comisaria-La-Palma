@@ -13,6 +13,7 @@ import AdminScreen from "./screens/AdminScreen";
 import HistorialCliDen from "./screens/HistorialCliDen";
 import PerfilUsuarioScreen from "./screens/PerfilUsuarioScreen";
 import RegDenPt1Screen from "./screens/RegDenPt1Screen";
+import RegDenPt2Screen from "./screens/RegDenPt2Screen";
 
 const icon = require("./assets/images/original.jpg");
 
@@ -63,6 +64,11 @@ export default function App() {
           <Stack.Screen
             name="RegistroDenuncia"
             component={RegDenPt1Screen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="RegistroDenunciaPt2"
+            component={RegDenPt2Screen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
