@@ -7,41 +7,31 @@ import {
   SafeAreaView,
   ScrollView,
   Pressable,
-  Image, // Asegúrate de importar Image si no está ya
+  Image, 
 } from 'react-native';
 
-// Importa los componentes reutilizables (Header y Footer)
+
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-
-// Para el Picker, aunque no se usa en la imagen, si lo necesitas en el futuro, ya está importado
 import { Picker } from '@react-native-picker/picker';
-
-// Para los iconos de más y menos, si los necesitas
 import { Ionicons } from '@expo/vector-icons';
 
-// Define tu nuevo componente de pantalla
 const RegDenPt2Screen = ({ navigation }) => {
-  // --- Estados para los campos de la vista ---
 
-  // Sección "Agraviados"
-  const [agraviadoOption, setAgraviadoOption] = useState('yo'); // 'yo' o 'otro'
-  const [tipoDocumento, setTipoDocumento] = useState(''); // Para el Picker de tipo de documento
+  const [agraviadoOption, setAgraviadoOption] = useState('yo'); 
+  const [tipoDocumento, setTipoDocumento] = useState(''); 
   const [numDocumento, setNumDocumento] = useState('');
   const [nombreAgraviado, setNombreAgraviado] = useState('');
-  const [agraviadosList, setAgraviadosList] = useState([]); // Para la lista de agraviados agregados
+  const [agraviadosList, setAgraviadosList] = useState([]); 
 
-  // Sección "Denunciados"
-  const [denunciadoOption, setDenunciadoOption] = useState('desconocido'); // 'conocido' o 'desconocido'
+  const [denunciadoOption, setDenunciadoOption] = useState('desconocido'); 
   const [nombreDenunciado, setNombreDenunciado] = useState('');
-  const [denunciadosList, setDenunciadosList] = useState([]); // Para la lista de denunciados agregados
+  const [denunciadosList, setDenunciadosList] = useState([]); 
 
-  // Sección "¿Dónde y cuándo ocurrió?"
   const [lugarIncidente, setLugarIncidente] = useState('');
-  const [fechaIncidente, setFechaIncidente] = useState(''); // Esto podría ser un DatePicker real
-  const [horaIncidente, setHoraIncidente] = useState('');   // Esto podría ser un TimePicker real
+  const [fechaIncidente, setFechaIncidente] = useState(''); 
+  const [horaIncidente, setHoraIncidente] = useState('');   
 
-  // --- Funciones para manejar lógica ---
 
   const handleAddAgraviado = () => {
     if (nombreAgraviado.trim() !== '') {
@@ -70,28 +60,23 @@ const RegDenPt2Screen = ({ navigation }) => {
   };
 
   const handleSubmit = () => {
-    // Lógica para enviar todos los datos recopilados
     console.log('Datos de la Denuncia Parte 2:');
     console.log('Agraviados:', agraviadosList);
     console.log('Denunciados:', denunciadosList);
     console.log('Lugar del Incidente:', lugarIncidente);
     console.log('Fecha del Incidente:', fechaIncidente);
     console.log('Hora del Incidente:', horaIncidente);
-    // Aquí podrías navegar a la siguiente pantalla o enviar a una API
-    // navigation.navigate('ConfirmacionDenunciaScreen');
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      /* ScrollView para el contenido principal */
+     
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        /* Componente Header */
-        <Header /> /* Si el Header necesita props como "navigation", pásalos aquí */
 
-        /* Título principal de la vista */
+        <Header /> 
+
         <Text style={styles.mainTitle}>Detalles de la Denuncia</Text>
 
-        {/* Sección: Agraviados */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Agraviados</Text>
           <View style={styles.radioGroup}>
@@ -100,7 +85,7 @@ const RegDenPt2Screen = ({ navigation }) => {
               onPress={() => setAgraviadoOption('yo')}
             >
               <View style={styles.radioCircle}>
-                <Text>{agraviadoOption === 'yo' && <View style={styles.selectedRadioCircle} />}</Text>
+              {agraviadoOption === 'yo' && <View style={styles.selectedRadioCircle} />}
               </View>
               <Text style={styles.radioText}>Yo</Text>
             </Pressable>
@@ -147,9 +132,9 @@ const RegDenPt2Screen = ({ navigation }) => {
             <TextInput
               style={[styles.input, { flex: 1, marginRight: 10 }]}
               placeholder={agraviadoOption === 'yo' ? "Tu nombre (automático)" : "Nombre o alias"}
-              value={agraviadoOption === 'yo' ? "Bruce Lee" : nombreAgraviado} // Simula nombre automático
+              value={agraviadoOption === 'yo' ? "Bruce Lee" : nombreAgraviado} 
               onChangeText={setNombreAgraviado}
-              editable={agraviadoOption === 'otro'} // Solo editable si es 'otro'
+              editable={agraviadoOption === 'otro'} 
             />
             <Pressable style={styles.addButton} onPress={handleAddAgraviado}>
               <Text style={styles.addButtonText}>Agregar</Text>
@@ -166,7 +151,6 @@ const RegDenPt2Screen = ({ navigation }) => {
           ))}
         </View>
 
-        /* Sección: Denunciados */
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Denunciados</Text>
           <View style={styles.radioGroup}>
@@ -216,7 +200,6 @@ const RegDenPt2Screen = ({ navigation }) => {
           )}
         </View>
 
-        /* Sección: ¿Dónde y cuándo ocurrió? */
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>¿Dónde y cuándo ocurrió?</Text>
 
@@ -227,7 +210,7 @@ const RegDenPt2Screen = ({ navigation }) => {
             value={lugarIncidente}
             onChangeText={setLugarIncidente}
           />
-          /* Aquí puedes integrar un DatePicker real para Fecha y Hora */
+          
           <Text style={styles.label}>Fecha:</Text>
           <TextInput
             style={styles.input}
@@ -247,30 +230,26 @@ const RegDenPt2Screen = ({ navigation }) => {
           />
         </View>
 
-        /* Botón de Enviar */
         <Pressable style={styles.submitButton} onPress={handleSubmit}>
           <Text style={styles.submitButtonText}>Enviar</Text>
         </Pressable>
 
-        /* Espacio extra para el Footer */
         <View style={{ height: 80 }} />
       </ScrollView>
 
-      /* Componente Footer - Colócalo fuera del ScrollView para que sea fijo */
-      <Footer activeTab="inicio" navigation={navigation} /> {/* Ajusta activeTab según la vista */}
+      <Footer activeTab="inicio" navigation={navigation} /> 
     </SafeAreaView>
   );
 };
 
-// --- Estilos para la nueva vista ---
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F6FFF5', // Color de fondo claro
+    backgroundColor: '#F6FFF5', 
   },
   scrollContainer: {
     padding: 16,
-    paddingBottom: 20, // Ajusta si el Footer se superpone o si necesitas más espacio
+    paddingBottom: 20, 
   },
   mainTitle: {
     fontSize: 22,
@@ -284,8 +263,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     marginBottom: 20,
-    elevation: 3, // Sombra para Android
-    shadowColor: '#000', // Sombra para iOS
+    elevation: 3, 
+    shadowColor: '#000', 
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
@@ -301,11 +280,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginBottom: 6,
     color: '#333',
-    marginTop: 10, // Espacio entre elementos
+    marginTop: 10, 
   },
   input: {
     height: 45,
-    backgroundColor: '#F6FFF5', // Fondo más claro para los inputs
+    backgroundColor: '#F6FFF5', 
     borderRadius: 8,
     paddingHorizontal: 12,
     fontSize: 15,
@@ -327,7 +306,7 @@ const styles = StyleSheet.create({
   radioGroup: {
     flexDirection: 'row',
     marginBottom: 15,
-    gap: 20, // Espacio entre los radio buttons
+    gap: 20, 
   },
   radioButton: {
     flexDirection: 'row',
@@ -376,7 +355,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#E8F5E9', // Un verde muy claro para los items agregados
+    backgroundColor: '#E8F5E9',
     padding: 10,
     borderRadius: 8,
     marginTop: 8,
