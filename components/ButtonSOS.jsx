@@ -28,18 +28,18 @@ export function ButtonSOS(){
     setPressed(!pressed);
   };
   return(
-            <View>
+            <View style={styles.container}>
               
               <Pressable onPress={() => setPressed(!pressed)} style={({ pressed: isPressed }) => [
                 styles.sosButton,
                 { backgroundColor: pressed ? 'red' : 'green' },
                 isPressed && styles.pressedStyle,]} >
 
-                  <Text style={styles.sosText}>{pressed ? 'SOS' : 'Activo'}</Text>
+                  <Text style={styles.sosText}>{pressed ? 'Activo' : 'SOS'}</Text>
 
               </Pressable>
               <View style={{ marginTop: 20 }}>
-              {pressed ? <ComponenteActivo /> : <ComponenteInactivo />}
+              {pressed ? <ComponenteInactivo /> : <ComponenteActivo />}
               </View>
             </View>
     );

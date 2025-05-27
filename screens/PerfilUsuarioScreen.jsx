@@ -11,11 +11,17 @@ import {
 } from 'react-native';
 import { Ionicons, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
+import { useNavigation } from '@react-navigation/native';
 
 const PerfilUsuarioScreen = () => {
+  const navigation = useNavigation();
+  
+      const handleLogout = () => {
+          navigation.navigate('Login');
+      }
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+    <View style={styles.container}>
         
         {/* Header */}
         <Header />
@@ -33,7 +39,13 @@ const PerfilUsuarioScreen = () => {
           </View>
           <Text style={styles.userName}>Estheban Marín</Text>
         </View>
-
+        <View style={{alignItems: "center",
+            height: 60, // Ajusta la altura según sea necesario
+            width: "100%",}}>
+          <Pressable style={styles.logoutButton} onPress={handleLogout}>
+              <Text style={styles.updateButtonText}>Cerrar Sesion</Text>
+          </Pressable>
+        </View>
         {/* Información de contacto */}
         <View style={styles.contactCard}>
           <View style={styles.cardHeader}>
@@ -51,6 +63,10 @@ const PerfilUsuarioScreen = () => {
         </View>
 
         {/* Actualizar contraseña */}
+        <View style={{
+          alignItems: "center",
+          height: 200, // Ajusta la altura según sea necesario
+        width: "100%",}}>
         <Text style={styles.sectionTitle}>Actualizar contraseña</Text>
         <View style={styles.inputGroup}>
           <View style={styles.inputWrapper}>
@@ -71,12 +87,16 @@ const PerfilUsuarioScreen = () => {
             <Ionicons name="eye-off" size={18} color="#555" />
           </View>
         </View>
-
         <Pressable style={styles.updateButton}>
           <Text style={styles.updateButtonText}>Actualizar</Text>
         </Pressable>
-      </ScrollView>
-    </SafeAreaView>
+        
+        </View>
+            
+
+        
+        <Footer />
+    </View>
   );
 };
 
@@ -184,7 +204,16 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 10,
+    marginBottom:10,
   },
+  logoutButton: {
+    backgroundColor: '#116D2D',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 10,
+    width: '40%',
+  },
+  
   updateButtonText: {
     color: '#fff',
     fontWeight: 'bold',
