@@ -11,6 +11,7 @@ import { Header } from '../components/Header';
 import { Shield } from '../components/Shield';
 import { ButtonSOS } from '../components/ButtonSOS';
 import { Button } from 'react-native-web';
+import { Footer } from '../components/Footer';
 
 
 const HomeScreen = ({navigation}) => {
@@ -30,18 +31,7 @@ const HomeScreen = ({navigation}) => {
       </ScrollView>
 
       {/* Footer */}
-      <View style={styles.footer}>
-        <Pressable style={styles.footerItem}
-          onPress={() => navigation.navigate('Home')}>
-          <Ionicons name="home" size={22} color="#F9FF33" />
-          <Text style={styles.footerTextActive}>Inicio</Text>
-        </Pressable>
-        <Pressable style={styles.footerItem}
-          onPress={() => navigation.navigate('HistorialCliDen')}>
-          <Ionicons name="person" size={22} color="#fff" />
-          <Text style={styles.footerText}>Perfil</Text>
-        </Pressable>
-      </View>
+      <Footer />
     </View>
     );
 };

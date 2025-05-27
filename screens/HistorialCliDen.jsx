@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, SafeAreaView, ScrollView, Pressable } from 'rea
 import { Ionicons } from '@expo/vector-icons';
 import { Header } from '../components/Header';
 import { NotificationCard } from '../components/NotificationCard';
+import { Footer } from '../components/Footer';
 
 
 const HistorialCliDen = ({ navigation }) => {
@@ -33,9 +34,7 @@ const HistorialCliDen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
-      <ScrollView contentContainerStyle={styles.scrollContainerHeader}>
         <Header />
-      </ScrollView>
 
       {/* Contenido */}
       <ScrollView contentContainerStyle={styles.content}>
@@ -52,21 +51,7 @@ const HistorialCliDen = ({ navigation }) => {
       </ScrollView>
 
       {/* Footer */}
-      <View style={styles.footer}>
-        <Pressable style={styles.footerItem}
-          onPress={() => navigation.navigate('Home')}>
-          <Ionicons name="home" size={22} color="#fff" />
-          <Text style={styles.footerText}>Inicio</Text>
-        </Pressable>
-        <Pressable style={styles.footerItem}>
-          <Ionicons name="notifications" size={22} color="#F9FF33" />
-          <Text style={styles.footerTextActive}>Historial</Text>
-        </Pressable>
-        <Pressable style={styles.footerItem}>
-          <Ionicons name="person" size={22} color="#fff" />
-          <Text style={styles.footerText}>Perfil</Text>
-        </Pressable>
-      </View>
+      <Footer />
     </SafeAreaView>
   );
 };
