@@ -14,6 +14,9 @@ import HistorialCliDen from "./screens/HistorialCliDen";
 import PerfilUsuarioScreen from "./screens/PerfilUsuarioScreen";
 import RegDenPt1Screen from "./screens/RegDenPt1Screen";
 import RegDenPt2Screen from "./screens/RegDenPt2Screen";
+import IncidenceInfoScreen from "./screens/IncidentInfoScreen";
+import { PoliceInfoScreen } from "./screens/PoliceInfoScreen";
+import { UpdatePassPolice } from "./screens/UpdatePassPoliceScreen";
 
 const icon = require("./assets/images/original.jpg");
 
@@ -69,6 +72,21 @@ export default function App() {
           <Stack.Screen
             name="RegistroDenunciaPt2"
             component={RegDenPt2Screen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="IncidentInfo"
+            component={IncidenceInfoScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="PoliceScreenInfo"
+            component={PoliceInfoScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="UpdatePassPolice"
+            component={UpdatePassPolice}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

@@ -3,11 +3,16 @@ import {StyleSheet, Pressable, Text, View, Dimensions} from 'react-native';
 import MapView from 'react-native-maps';
 
 function ComponenteActivo() {
-  return <Text></Text>;
+  return(
+    <View style={{width: Dimensions.get('window').width, height: 200, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>Siempre ten seguridad</Text>
+    </View>
+  );
 }
 
 function ComponenteInactivo() {
   return (
+    <View style={{width: Dimensions.get('window').width, height: '300', justifyContent: 'center', alignItems: 'center', marginBottom: 20, marginTop: 160}}>
     <MapView
         style={styles.mapa}
         initialRegion={{
@@ -17,6 +22,7 @@ function ComponenteInactivo() {
           longitudeDelta: 0.0421,    // Zoom horizontal
         }}
       />
+      </View>
   );
 }
 
@@ -50,6 +56,7 @@ const styles = StyleSheet.create({
     height: "10%",
       width: "100%", // Asegura que ocupe todo el ancho de la pantalla
       alignItems: "center",
+      flex:1,
     },  
   sosButton: {
       width: 140,
@@ -70,7 +77,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   mapa: {
-    width: 300,
-    height: 200,
+    width: '100%',
+    height: '100%',
   },
 });

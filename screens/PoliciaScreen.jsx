@@ -1,18 +1,27 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Pressable } from 'react-native';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { Footer } from '../components/Footer';
+import { PoliceFooter } from '../components/PoliceFooter';
 
 const incidents = [
-  { id: 1, time: '3:15 pm', status: 'active', description: 'Incidente: Robo', location: 'Urb. La Palma N-12' },
-  { id: 2, time: '3:15 pm', status: 'active', description: 'Incidente: Robo', location: 'Urb. La Palma N-12' },
-  { id: 3, time: '3:15 pm', status: 'attended', description: 'Incidente: Robo', location: 'Urb. La Palma N-12' },
+  { id: 1, time: '3:15 pm', status: 'pending', description: 'Incidente: Robo', location: 'Urb. La Palma N-12' },
+  { id: 2, time: '3:15 pm', status: 'attending', description: 'Incidente: Robo', location: 'Urb. La Palma N-12' },
+  { id: 3, time: '3:15 pm', status: 'resolved', description: 'Incidente: Robo', location: 'Urb. La Palma N-12' },
 ];
 
 const statusColors = {
-  active: '#2ecc71',
-  attended: '#95a5a6',
+  pending: '#e74c3c',     // rojo
+  attending: '#f39c12',   // naranja
+  resolved: '#2ecc71',    // verde
 };
 
-export default function HomeScreen() {
+export default function PoliciaScreen() {
+  const navigation = useNavigation();
+    const handleIncidentInfo = (incident) => {
+      navigation.navigate('IncidentInfo', { status: incident.status });
+      console.log('Incident Info:', incidents);
+      }
   return (
     <View style={styles.container}>
       {/* Encabezado */}
@@ -44,41 +53,35 @@ export default function HomeScreen() {
         <Text style={styles.sectionTitle}>Incidentes de hoy</Text>
 
         {incidents.map((incident) => (
-          <View key={incident.id} style={styles.incidentCard}>
-            <Text style={styles.incidentTime}>{incident.time}</Text>
-            <Text style={styles.incidentDesc}>{incident.description}</Text>
-            <Text style={styles.incidentLoc}>
-              Ubicación: {incident.location}... <Text style={styles.link}>ver más.</Text>
-            </Text>
-            <View style={styles.cardFooter}>
-              <View
-                style={[
-                  styles.statusCircle,
-                  { backgroundColor: statusColors[incident.status] },
+          <Pressable 
+            key={incident.id} 
+            style={styles.incidentCard} 
+            onPress={() => handleIncidentInfo(incident)}>
+
+                <Text style={styles.incidentTime}>{incident.time}</Text>
+                <Text style={styles.incidentDesc}>{incident.description}</Text>
+                <Text style={styles.incidentLoc}>
+                    Ubicación: {incident.location}... <Text style={styles.link}>ver más.</Text>
+                </Text>
+                <View style={styles.cardFooter}>
+                  <View
+                    style={[
+                      styles.statusCircle,
+                      { backgroundColor: statusColors[incident.status] },
                 ]}
               />
-              <TouchableOpacity>
-                <FontAwesome name="search" size={18} color="#333" />
-              </TouchableOpacity>
+              <Pressable>
+                <FontAwesome name="search-plus" size={25} color="#333" />
+              </Pressable>
             </View>
-          </View>
+          </Pressable>
         ))}
 
-        {/* Casos atendidos */}
-        <Text style={styles.sectionTitle}>Casos atendidos y más</Text>
+        
       </ScrollView>
 
       {/* Footer */}
-      <View style={styles.footer}>
-        <TouchableOpacity style={styles.footerItem}>
-          <Ionicons name="home-outline" size={24} color="yellow" />
-          <Text style={styles.footerLabelActive}>Inicio</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerItem}>
-          <Ionicons name="person-outline" size={24} color="#fff" />
-          <Text style={styles.footerLabel}>Perfil</Text>
-        </TouchableOpacity>
-      </View>
+      <PoliceFooter />
     </View>
   );
 }
@@ -147,17 +150,5 @@ const styles = StyleSheet.create({
     height: 18,
     borderRadius: 9,
   },
-  footer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: '#043927',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingVertical: 10,
-  },
-  footerItem: { alignItems: 'center' },
-  footerLabel: { color: '#fff', fontSize: 12 },
-  footerLabelActive: { color: 'yellow', fontSize: 12 },
+  
 });
