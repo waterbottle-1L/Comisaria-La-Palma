@@ -1,8 +1,9 @@
-import {useState} from 'react';
-import {StyleSheet, Pressable, Text, View, Dimensions} from 'react-native';
+import {useState, useRef, useEffect} from 'react';
+import {StyleSheet, Pressable, Text, View, Dimensions, Animated} from 'react-native';
 import MapView from 'react-native-maps';
+import { Map } from './Map';
 
-function ComponenteActivo() {
+/* function ComponenteActivo() {
   return(
     <View style={{width: Dimensions.get('window').width, height: 200, justifyContent: 'center', alignItems: 'center'}}>
         <Text>Siempre ten seguridad</Text>
@@ -24,44 +25,114 @@ function ComponenteInactivo() {
       />
       </View>
   );
-}
+} */
 
 export function ButtonSOS(){
     
-  const [pressed, setPressed] = useState(false); // Estado inicial: false
+  const [pressed, setPressed] = useState(false); // Estado para el botón SOS
+  
+  const [showMap, setShowMap] = useState(false); // Estado inicial: false
+
+  const pulseAnim = useRef(new Animated.Value(1)).current; // para onda pequeña normal
+
+  const clickPulseAnim = useRef(new Animated.Value(1)).current; // para onda al click
+
+    useEffect(() => {
+        Animated.loop(
+          Animated.sequence([
+            Animated.timing(pulseAnim, {
+              toValue: 1.2,
+              duration: 1000,
+              useNativeDriver: true,
+            }),
+            Animated.timing(pulseAnim, {
+              toValue: 1,
+              duration: 1000,
+              useNativeDriver: true,
+            }),
+          ])
+      ).start();
+    }, []);
 
   const manejarPresion = () => {
-    setPressed(!pressed);
+
+    setPressed(true);
+
+    clickPulseAnim.setValue(1);
+
+    Animated.timing(clickPulseAnim, {
+      
+        toValue: 2.5,
+        duration: 600,
+        useNativeDriver: true,
+
+    }).start(() => {
+
+      clickPulseAnim.setValue(1);
+
+    });
+
+    setShowMap(true); // Cambia el estado a true al presionar el botón
   };
   return(
             <View style={styles.container}>
-              
-              <Pressable onPress={() => setPressed(!pressed)} style={({ pressed: isPressed }) => [
+
+              {/* Onda de click - efecto más grande */}
+              <Animated.View pointerEvents="none"
+                style={[
+                  styles.pulse,
+                  {
+                    transform: [{ scale: clickPulseAnim }],
+                    opacity: clickPulseAnim.interpolate({
+                      inputRange: [1, 2.5],
+                      outputRange: [0.6, 0],
+                    }),
+                  },
+                ]} 
+                />
+
+                 {/* Onda pequeña pulsante */}
+                 <Animated.View
+                    pointerEvents="none"
+                    style={[
+                      styles.pulse,
+                      {
+                        transform: [{ scale: pulseAnim }],
+                        opacity: 0.3,
+                      },
+                  ]}
+                />
+
+              {/* Botón SOS */}              
+              <Pressable onPress={manejarPresion} style={({ pressed: isPressed }) => [
                 styles.sosButton,
                 { backgroundColor: pressed ? 'red' : 'green' },
-                isPressed && styles.pressedStyle,]} >
+                isPressed,]} >
 
                   <Text style={styles.sosText}>{pressed ? 'Activo' : 'SOS'}</Text>
 
               </Pressable>
-              <View style={{ marginTop: 20 }}>
-              {pressed ? <ComponenteInactivo /> : <ComponenteActivo />}
-              </View>
+              {/* Muestra el mapa cuando showMap es true */}
+                {showMap && (
+                  <Map />
+                )}
             </View>
     );
 };
 
+const BUTTON_SIZE = 140;
+
 const styles = StyleSheet.create({
   container:{
-    height: "10%",
-      width: "100%", // Asegura que ocupe todo el ancho de la pantalla
+    height: BUTTON_SIZE*3,
+      width: BUTTON_SIZE*3, // Asegura que ocupe todo el ancho de la pantalla
       alignItems: "center",
       flex:1,
     },  
   sosButton: {
-      width: 140,
-      height: 140,
-      borderRadius: 70,
+      width: BUTTON_SIZE,
+      height: BUTTON_SIZE,
+      borderRadius: BUTTON_SIZE/2,
       /* backgroundColor: '#D30000', */
       justifyContent: 'center',
       alignItems: 'center',
@@ -79,5 +150,12 @@ const styles = StyleSheet.create({
   mapa: {
     width: '100%',
     height: '100%',
+  },
+  pulse: {
+    position: 'absolute',
+    width: BUTTON_SIZE,
+    height: BUTTON_SIZE,
+    borderRadius: BUTTON_SIZE / 2,
+    backgroundColor: '#3498db',
   },
 });

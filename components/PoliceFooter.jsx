@@ -1,18 +1,24 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { Link } from 'expo-router';
 export const PoliceFooter = () => {
     const navigation = useNavigation();
     return(
         <View style={styles.footer}>
-        <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Police')}>
-          <Ionicons name="home-outline" size={24} color="yellow" />
-          <Text style={styles.footerLabelActive}>Inicio</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('PoliceScreenInfo')} >
-          <Ionicons name="person-outline" size={24} color="#fff" />
-          <Text style={styles.footerLabel}>Perfil</Text>
-        </TouchableOpacity>
+          <Link href="/PoliceScreen" asChild>
+          <Pressable style={styles.footerItem}>
+              <Ionicons name="home-outline" size={24} color="yellow" />
+              <Text style={styles.footerLabelActive}>Inicio</Text>
+          </Pressable>
+          </Link>
+
+          <Link href="/PoliceInfoScreen" asChild>
+            <Pressable style={styles.footerItem}>
+                <Ionicons name="person-outline" size={24} color="#fff" />
+                <Text style={styles.footerLabel}>Perfil</Text>
+            </Pressable>
+          </Link>
         </View>
     );
 };

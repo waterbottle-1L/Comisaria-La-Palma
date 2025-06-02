@@ -13,13 +13,14 @@ import { Ionicons, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { useNavigation } from '@react-navigation/native';
+import { Link } from 'expo-router';
 
 const PerfilUsuarioScreen = () => {
-  const navigation = useNavigation();
+  /* const navigation = useNavigation();
   
       const handleLogout = () => {
           navigation.navigate('Login');
-      }
+      } */
   return (
     <View style={styles.container}>
         
@@ -42,9 +43,11 @@ const PerfilUsuarioScreen = () => {
         <View style={{alignItems: "center",
             height: 60, // Ajusta la altura según sea necesario
             width: "100%",}}>
-          <Pressable style={styles.logoutButton} onPress={handleLogout}>
-              <Text style={styles.updateButtonText}>Cerrar Sesion</Text>
-          </Pressable>
+              <Link href="/" asChild>
+                <Pressable style={styles.logoutButton}>
+                    <Text style={styles.updateButtonText}>Cerrar Sesion</Text>
+                </Pressable>
+              </Link>
         </View>
         {/* Información de contacto */}
         <View style={styles.contactCard}>

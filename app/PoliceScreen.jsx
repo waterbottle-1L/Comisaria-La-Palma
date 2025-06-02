@@ -16,7 +16,7 @@ const statusColors = {
   resolved: '#2ecc71',    // verde
 };
 
-export default function PoliciaScreen() {
+export default function PoliceScreen() {
   const navigation = useNavigation();
     const handleIncidentInfo = (incident) => {
       navigation.navigate('IncidentInfo', { status: incident.status });

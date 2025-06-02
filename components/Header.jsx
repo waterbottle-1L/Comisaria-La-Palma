@@ -3,18 +3,28 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Shield } from "../components/Shield";
+import { LinearGradient } from 'expo-linear-gradient';
 
-/* import { SafeAreaView } from "react-native-safe-area-context"; */
-export function Header(){
+
+export function Header({color1, color2}){
     return(
-              <View style={styles.header}>
-              <Text style={styles.logo}>SENTRIC</Text>
-              <Text style={styles.callText}>
-                📞 Marca 105. La Policía Está Lista Para Ayudarte
-              </Text>
-              </View>
+              <LinearGradient 
+                  colors={[color1, color2]} // colores del degradado
+                  start={{ x: 0.5, y: 0 }}
+                  end={{ x: 0.5, y: 1 }}
+                 
+                  /* locations={[0, 1]} // ubicaciones del degradado */
+                  style={styles.header} // aplica estilos al contenedor
+                  >
+                  <Text style={styles.logo}>SENTRIC</Text>
+
+                  <Text style={styles.callText}>
+
+                      📞 Marca 105. La Policía Está Lista Para Ayudarte
+
+                  </Text>
+              
+              </LinearGradient>
     );
     
 };
@@ -23,7 +33,7 @@ const styles = StyleSheet.create({
       height: "13%",
       width: "100%", // Asegura que ocupe todo el ancho de la pantalla
       alignItems: "center",
-      backgroundColor: "#004d28", // Fondo verde oscuro
+      /* backgroundColor: "#004d28", // Fondo verde oscuro */
       justifyContent: 'center',
 
   },
