@@ -2,26 +2,28 @@ import { useState } from 'react';
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
   Image,
+  Pressable
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Picker } from '@react-native-picker/picker';
 import { PoliceFooter } from '../components/PoliceFooter';
 import { useNavigation } from '@react-navigation/native';
+import { Link } from 'expo-router';
 
-export function PoliceInfoScreen () {
-  const [patrulla, setPatrulla] = useState('');
-const navigation = useNavigation();
+const PoliceInfoScreen = () => {
+      const [patrulla, setPatrulla] = useState('');
+      const navigation = useNavigation();
+      
   return (
     <View style={styles.container}>
 
       <View style={styles.profileContainer}>
         <View style={styles.imageWrapper}>
           <Image
-            source={{ uri: 'https://www.cidob.org/sites/default/files/styles/max_width_290/public/2024-09/Fujimori%2C%20Alberto.jpg.webp?itok=zhBX8F2x' }} // Reemplazar con URI real o ruta local
+            source={ require('../assets/images/original.jpg') } // Reemplazar con URI real o ruta local
             style={styles.profileImage}
           />
           <TouchableOpacity style={styles.cameraIcon}>
@@ -29,7 +31,7 @@ const navigation = useNavigation();
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.name}>Chino Xiang</Text>
+        <Text style={styles.name}>Pablo Lujan Carrion</Text>
 
         <View style={styles.contactCard}>
           <View style={styles.contactRow}>
@@ -38,17 +40,25 @@ const navigation = useNavigation();
           </View>
           <View style={styles.contactRow}>
             <Icon name="mail" size={20} />
-            <Text style={styles.contactText}>contacto1@gmail.com</Text>
+            <Text style={styles.contactText}>correogenerico@gmail.com</Text>
           </View>
           <TouchableOpacity style={styles.editIcon}>
             <Icon name="pencil" size={20} />
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.passwordButton} onPress={()=> navigation.navigate('UpdatePassPolice')}>
-          <Text style={styles.passwordButtonText}>Actualizar contraseña</Text>
-        </TouchableOpacity>
+        <Link href="/" asChild>
+            <Pressable style={styles.passwordButton}>
+                  <Text style={styles.passwordButtonText}>Cerrar Sesion</Text>
+            </Pressable>
+        </Link>
 
+        <Link href="/UpdatePassPoliceScreen" asChild>
+            <Pressable style={styles.passwordButton} onPress={()=> navigation.navigate('UpdatePassPolice')}>
+                  <Text style={styles.passwordButtonText}>Actualizar contraseña</Text>
+            </Pressable>
+        </Link>
+        
         <View style={styles.dropdown}>
           <Text style={styles.dropdownLabel}>Seleccionar patrulla</Text>
           <Picker
@@ -152,3 +162,5 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
 });
+
+export default PoliceInfoScreen;

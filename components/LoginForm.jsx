@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import {  StyleSheet, View, TextInput, Pressable, Text, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { router } from 'expo-router';
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export function LoginForm(){
-  const navigation = useNavigation();
+  
 
   const [tipoCuenta, setTipoCuenta] = useState(''); 
 
@@ -14,13 +15,13 @@ export function LoginForm(){
     const entrada = tipoCuenta.trim().toLowerCase();
 
     if (entrada === 'admin') {
-      navigation.replace('Admin'); // O navigation.navigate('Admin')
+      router.replace('AdminScreen'); // O navigation.navigate('Admin')
     } else if (entrada === 'user') {
-      navigation.replace('Home');
+      router.replace('HomeScreen');
     } else if (entrada === 'policia') {
-      navigation.replace('Police');
-    } else if (entrada === 'registro denuncia') {
-      navigation.replace('RegistroDenunciaPt2');
+      router.replace('PoliceScreen');
+    /* } else if (entrada === 'registro denuncia') {
+      router.replace('RegistroDenunciaPt2Screen'); */
     } else {
       Alert.alert('Cuenta inválida', 'Escribe una cuenta válida');
     }
@@ -48,7 +49,7 @@ export function LoginForm(){
                 <Pressable style={styles.loginButton} onPress={manejarLogin}>
                     <Text style={styles.loginButtonText}>Iniciar sesión</Text>  
                 </Pressable> 
-          </View>
+            </View>
     );
 };
 

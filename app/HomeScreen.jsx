@@ -17,7 +17,8 @@ import { Footer } from '../components/Footer';
 const HomeScreen = ({navigation}) => {
     return(
         <View style={styles.container}>
-                <Header />
+                <Header color1={"green"} color2={"black"}/>
+                <Shield height={150} width={150}/>
       {/* Contenido */}
             <ScrollView contentContainerStyle={styles.content}>
             <Text style={styles.emergencyTitle}>¿Tienes una emergencia?</Text>

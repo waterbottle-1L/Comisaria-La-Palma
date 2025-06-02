@@ -16,8 +16,8 @@ const LoginScreen = ({ navigation }) => {
     <SafeAreaProvider>
         <StatusBar style="auto" />
         <SafeAreaView style={styles.container}>
-          <Header />
-          <Shield />  
+          <Header color1={'black'} color2={'green'} />
+          <Shield height={200} width={200}/>  
         <LoginForm />
         <LoginOptions />
         </SafeAreaView>

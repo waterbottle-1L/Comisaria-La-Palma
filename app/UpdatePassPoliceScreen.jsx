@@ -10,7 +10,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 
-export function UpdatePassPolice () {
+ function UpdatePassPolice () {
   const [mostrarActual, setMostrarActual] = useState(false);
   const [mostrarNueva, setMostrarNueva] = useState(false);
   const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
@@ -18,13 +18,15 @@ export function UpdatePassPolice () {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('PoliceScreenInfo')}>
-        <Icon name="arrow-back" size={24} color="#fff" />
-      </TouchableOpacity>
+      <Link href="/PoliceInfoScreen" asChild>
+          <Pressable style={styles.backButton} >
+                <Icon name="arrow-back" size={24} color="#fff" />
+          </Pressable>
+      </Link>
 
       <View style={styles.content}>
         <Image
-          source={{ uri: 'https://www.cidob.org/sites/default/files/styles/max_width_290/public/2024-09/Fujimori%2C%20Alberto.jpg.webp?itok=zhBX8F2x' }} // Reemplaza con la imagen real
+          source={require('../assets/images/xinojeta.jpg')} // Reemplaza con la imagen real
           style={styles.profileImage}
         />
         <Text style={styles.nombre}>Chino Xiang</Text>
@@ -157,3 +159,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+export default UpdatePassPolice;
