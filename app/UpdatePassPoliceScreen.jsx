@@ -6,15 +6,16 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  Pressable
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native';
+import { Link } from 'expo-router';
 
  function UpdatePassPolice () {
   const [mostrarActual, setMostrarActual] = useState(false);
   const [mostrarNueva, setMostrarNueva] = useState(false);
   const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
-  const navigation = useNavigation();
+  
 
   return (
     <View style={styles.container}>
@@ -29,7 +30,7 @@ import { useNavigation } from '@react-navigation/native';
           source={require('../assets/images/xinojeta.jpg')} // Reemplaza con la imagen real
           style={styles.profileImage}
         />
-        <Text style={styles.nombre}>Chino Xiang</Text>
+        <Text style={styles.nombre}>Pablo Lujan Carrion</Text>
 
         <Text style={styles.label}>Contraseña actual</Text>
         <View style={styles.inputContainer}>

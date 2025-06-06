@@ -54,7 +54,7 @@ const PoliceInfoScreen = () => {
         </Link>
 
         <Link href="/UpdatePassPoliceScreen" asChild>
-            <Pressable style={styles.passwordButton} onPress={()=> navigation.navigate('UpdatePassPolice')}>
+            <Pressable style={styles.passwordButton} >
                   <Text style={styles.passwordButtonText}>Actualizar contraseña</Text>
             </Pressable>
         </Link>
