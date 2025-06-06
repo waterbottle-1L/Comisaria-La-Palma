@@ -1,31 +1,8 @@
 import {useState, useRef, useEffect} from 'react';
 import {StyleSheet, Pressable, Text, View, Dimensions, Animated} from 'react-native';
-import MapView from 'react-native-maps';
 import { Map } from './Map';
 
-/* function ComponenteActivo() {
-  return(
-    <View style={{width: Dimensions.get('window').width, height: 200, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>Siempre ten seguridad</Text>
-    </View>
-  );
-}
 
-function ComponenteInactivo() {
-  return (
-    <View style={{width: Dimensions.get('window').width, height: '300', justifyContent: 'center', alignItems: 'center', marginBottom: 20, marginTop: 160}}>
-    <MapView
-        style={styles.mapa}
-        initialRegion={{
-          latitude: 37.78825,        // Latitud inicial
-          longitude: -122.4324,      // Longitud inicial
-          latitudeDelta: 0.0922,     // Zoom vertical
-          longitudeDelta: 0.0421,    // Zoom horizontal
-        }}
-      />
-      </View>
-  );
-} */
 
 export function ButtonSOS(){
     
@@ -114,7 +91,7 @@ export function ButtonSOS(){
               </Pressable>
               {/* Muestra el mapa cuando showMap es true */}
                 {showMap && (
-                  <Map />
+                  <Map width={Dimensions.get('window').width} height={'210'} />
                 )}
             </View>
     );

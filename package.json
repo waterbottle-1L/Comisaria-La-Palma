@@ -17,21 +17,23 @@
     "axios": "^1.9.0",
     "expo": "~53.0.9",
     "expo-image-picker": "~16.1.4",
+    "expo-linear-gradient": "~14.1.4",
+    "expo-router": "~5.0.7",
     "expo-status-bar": "~2.2.3",
+    "leaflet": "^1.9.4",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "react-leaflet": "^5.0.0",
     "react-native": "0.79.2",
     "react-native-dotenv": "^3.4.11",
     "react-native-maps": "1.20.1",
     "react-native-safe-area-context": "^5.4.0",
-    "react-native-web": "^0.20.0",
-    "expo-linear-gradient": "~14.1.4",
-    "expo-router": "~5.0.7"
+    "react-native-web": "^0.20.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "typescript": "~5.8.3",
-    "@types/react": "~19.0.10"
+    "@types/react": "~19.0.10",
+    "typescript": "~5.8.3"
   },
   "private": true
 }

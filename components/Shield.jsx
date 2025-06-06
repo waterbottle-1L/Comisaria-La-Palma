@@ -2,6 +2,7 @@ import {Image, StyleSheet, Text, View } from 'react-native';
 
 export function Shield({height, width}) {
     return(
+        
         <View style={styles.logoContainer}>
                 <Image
                 source={require('../assets/images/escudo.png')} // Asegúrate de colocar la imagen en la carpeta /assets
@@ -19,8 +20,8 @@ export function Shield({height, width}) {
         },
         logoContainer: {
             alignItems: "center",
-            marginTop: 20, // Espacio superior para centrar el logo
-            marginBottom: 20, // Espacio inferior para centrar el logo 
+            marginTop: 10, // Espacio superior para centrar el logo
+           /*  marginBottom: 10, */ // Espacio inferior para centrar el logo 
            /*  height: 300, */ // Ajusta la altura según sea necesario
            /*  width: "100%", */
         }

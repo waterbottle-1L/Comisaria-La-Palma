@@ -2,15 +2,11 @@ import {
     View,
   Text,
   StyleSheet,
-  Pressable,
-    SafeAreaView,
-  StatusBar,
   ScrollView, } from 'react-native';
 import { MaterialIcons, Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { Header } from '../components/Header';
 import { Shield } from '../components/Shield';
 import { ButtonSOS } from '../components/ButtonSOS';
-import { Button } from 'react-native-web';
 import { Footer } from '../components/Footer';
 
 
