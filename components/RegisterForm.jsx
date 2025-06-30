@@ -5,32 +5,29 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 
 import { Link } from 'expo-router';
+import { registerService } from "../services/registerService";
 
 
 export function RegisterForm() {
-    const navigation = useNavigation();
-    const [form, setForm] = useState({
-    dni: '',
-    email: '',
-    phone: '',
-    password: '',
-  });
+    const [dni, setDni] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
 
-  const [errors, setErrors] = useState({});
-
-  const handleRegister = () => {
-    const newErrors = {};
-    if (!form.dni.trim()) newErrors.dni = 'Este campo es obligatorio';
-    if (!form.email.trim()) newErrors.email = 'Este campo es obligatorio';
-    if (!form.phone.trim()) newErrors.phone = 'Este campo es obligatorio';
-    if (!form.password.trim()) newErrors.password = 'Este campo es obligatorio';
-
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
-      // Aquí va la lógica para enviar datos
-      Alert.alert('Registro exitoso');
-    }
+  const handleRegister = async() => {
+    
+    
+      console.log('DNI:', dni);
+      console.log('Email:', email); 
+      console.log('Phone:', phone);
+      console.log('Password:', password);
+      try{
+        const user = await registerService(dni, email, phone, password);
+        Alert.alert('Registro exitoso');
+      } catch (error) {
+        console.error('Error al registrar el usuario:', error);
+        Alert.alert('Error', 'No se pudo registrar el usuario. Inténtalo de nuevo más tarde.');
+      }
   };
         return (
         <View style={styles.formContainer}>
@@ -40,41 +37,41 @@ export function RegisterForm() {
                 keyboardType="numeric"
                 maxLength={8}
                 style={styles.input}
-                value={form.dni}
-                onChangeText={(text) => setForm({ ...form, dni: text })}
+                value={dni}
+                onChangeText={setDni}
                 />
-                {errors.dni && <Text style={styles.errorText}>{errors.dni}</Text>}
+                
                 <TextInput
                 placeholder="Correo Electrónico"
                 placeholderTextColor="#ccc"
                 style={styles.input}
                 keyboardType="email-address"
-                value={form.email}
-                onChangeText={(text) => setForm({ ...form, email: text })}
+                value={email}
+                onChangeText={setEmail}
                 />
-                {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
+                
                 <TextInput
                 placeholder="Número de Teléfono"
                 placeholderTextColor="#ccc"
                 style={styles.input}
                 keyboardType="numeric"
-                value={form.phone}
-                onChangeText={(text) => setForm({ ...form, phone: text })}
+                value={phone}
+                onChangeText={setPhone}
                 />
-                {errors.phone && <Text style={styles.errorText}>{errors.phone}</Text>}
+                
                 <View style={styles.passwordContainer}>
                 <TextInput
                     placeholder="Contraseña"
                     placeholderTextColor="#ccc"
                     secureTextEntry
                     style={styles.inputPassword}
-                    value={form.password}
-                    onChangeText={(text) => setForm({ ...form, password: text })}
+                    value={password}
+                    onChangeText={setPassword}
                 />
 
                 <MaterialCommunityIcons name="eye-off" size={20} color="#ccc" />
                 </View>
-                  {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
+    
                 <Pressable style={styles.registerButton} onPress={handleRegister}>
                 <Text style={styles.registerButtonText}>Regístrate</Text>
                 </Pressable>

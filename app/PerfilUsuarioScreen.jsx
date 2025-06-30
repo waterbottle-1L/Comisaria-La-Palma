@@ -4,23 +4,16 @@ import {
   Text,
   StyleSheet,
   Pressable,
-  SafeAreaView,
   TextInput,
   Image,
-  ScrollView,
 } from 'react-native';
 import { Ionicons, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { useNavigation } from '@react-navigation/native';
+
 import { Link } from 'expo-router';
 
 const PerfilUsuarioScreen = () => {
-  /* const navigation = useNavigation();
-  
-      const handleLogout = () => {
-          navigation.navigate('Login');
-      } */
   return (
     <View style={styles.container}>
         

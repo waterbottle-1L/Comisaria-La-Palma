@@ -2,8 +2,6 @@ import {useState, useRef, useEffect} from 'react';
 import {StyleSheet, Pressable, Text, View, Dimensions, Animated} from 'react-native';
 import { Map } from './Map';
 
-
-
 export function ButtonSOS(){
     
   const [pressed, setPressed] = useState(false); // Estado para el botón SOS

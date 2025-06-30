@@ -1,38 +1,49 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {  StyleSheet, View, TextInput, Pressable, Text, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { router } from 'expo-router';
-
+import * as SecureStore from 'expo-secure-store';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import loginService from '../services/loginService';
 
 export function LoginForm(){
   
 
-  const [tipoCuenta, setTipoCuenta] = useState(''); 
+  const [email, setEmail] = useState(''); 
+  const [password, setPassword] = useState('');
+  const manejarLogin = async () => {
+      try {
+          const userData = await loginService(email, password);
 
-  const manejarLogin = () => {
+          // Guardar token
+          await SecureStore.setItemAsync("token", userData.token);
 
-    const entrada = tipoCuenta.trim().toLowerCase();
-
-    if (entrada === 'admin') {
-      router.replace('AdminScreen'); // O navigation.navigate('Admin')
-    } else if (entrada === 'user') {
-      router.replace('HomeScreen');
-    } else if (entrada === 'policia') {
-      router.replace('PoliceScreen');
-    /* } else if (entrada === 'registro denuncia') {
-      router.replace('RegistroDenunciaPt2Screen'); */
-    } else {
-      Alert.alert('Cuenta inválida', 'Escribe una cuenta válida');
-    }
+          // Redirigir según el rol
+          switch (userData.role) {
+              case "ADMIN":
+                router.replace("AdminScreen");
+                break;
+              case "POLICE":
+                router.replace("PoliceScreen");
+                break;
+              case "CITIZEN":
+                router.replace("HomeScreen");
+                break;
+              default:
+                router.replace("index");
+          }
+        } catch (error) {
+            console.error("Error al iniciar sesión:", error.message);
+          }
   };
     return(
         <View style={styles.formContainer}>
             <View style={styles.boxContainer}>
                 <TextInput
-                  placeholder="Nombre de usuario"
-                  onChangeText={setTipoCuenta}
-                  value={tipoCuenta}
+                  placeholder="Correo"
+                  onChangeText={setEmail}
+                  value={email}
                   placeholderTextColor="#ccc"
                   style={styles.input}
                 />
@@ -40,6 +51,8 @@ export function LoginForm(){
                   <TextInput
                     placeholder="Contraseña"
                     placeholderTextColor="#ccc"
+                    onChangeText={setPassword}
+                    value={password}
                     secureTextEntry
                     style={styles.inputPassword}
                   />

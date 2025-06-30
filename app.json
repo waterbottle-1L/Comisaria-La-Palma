@@ -4,7 +4,7 @@
     "slug": "Comisaria-La-Palma",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme":"sentric",
+    "scheme": "sentric",
     "icon": "./assets/images/escudo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
@@ -27,7 +27,8 @@
       "favicon": "./assets/images/xinojeta.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-secure-store"
     ]
   }
 }
