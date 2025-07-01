@@ -34,7 +34,7 @@ export function LoginForm(){
                 router.replace("index");
           }
         } catch (error) {
-            console.error("Error al iniciar sesión:", error.message);
+            Alert.alert('Error de inicio de sesión', 'Por favor, verifica tus credenciales e inténtalo de nuevo.');
           }
   };
     return(

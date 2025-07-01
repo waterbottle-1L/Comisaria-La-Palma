@@ -3,6 +3,7 @@ import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { Footer } from '../components/Footer';
 import { PoliceFooter } from '../components/PoliceFooter';
+import NotificationPush from '../components/NotificationPush';
 
 const incidents = [
   { id: 1, time: '3:15 pm', status: 'pending', description: 'Incidente: Robo', location: 'Urb. La Palma N-12' },
@@ -10,11 +11,7 @@ const incidents = [
   { id: 3, time: '3:15 pm', status: 'resolved', description: 'Incidente: Robo', location: 'Urb. La Palma N-12' },
 ];
 
-const statusColors = {
-  pending: '#e74c3c',     // rojo
-  attending: '#f39c12',   // naranja
-  resolved: '#2ecc71',    // verde
-};
+
 
 export default function PoliceScreen() {
   const navigation = useNavigation();
@@ -36,7 +33,7 @@ export default function PoliceScreen() {
         <Text style={styles.agentSubtext}>+51 954 701 446</Text>
       </View>
 
-      {/* Indicadores de estado */}
+      {/* 
       <View style={styles.statusIndicators}>
         <View style={styles.statusItem}>
           <View style={[styles.statusDot, { backgroundColor: '#2ecc71' }]} />
@@ -46,39 +43,8 @@ export default function PoliceScreen() {
           <View style={[styles.statusDot, { backgroundColor: '#95a5a6' }]} />
           <Text>Está siendo atendido</Text>
         </View>
-      </View>
-
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        {/* Incidentes de hoy */}
-        <Text style={styles.sectionTitle}>Incidentes de hoy</Text>
-
-        {incidents.map((incident) => (
-          <Pressable 
-            key={incident.id} 
-            style={styles.incidentCard} 
-            onPress={() => handleIncidentInfo(incident)}>
-
-                <Text style={styles.incidentTime}>{incident.time}</Text>
-                <Text style={styles.incidentDesc}>{incident.description}</Text>
-                <Text style={styles.incidentLoc}>
-                    Ubicación: {incident.location}... <Text style={styles.link}>ver más.</Text>
-                </Text>
-                <View style={styles.cardFooter}>
-                  <View
-                    style={[
-                      styles.statusCircle,
-                      { backgroundColor: statusColors[incident.status] },
-                ]}
-              />
-              <Pressable>
-                <FontAwesome name="search-plus" size={25} color="#333" />
-              </Pressable>
-            </View>
-          </Pressable>
-        ))}
-
-        
-      </ScrollView>
+      </View> */}
+        <NotificationPush />
 
       {/* Footer */}
       <PoliceFooter />
