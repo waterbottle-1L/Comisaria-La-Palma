@@ -10,6 +10,15 @@ module.exports = function (api) {
           path: ".env",
         },
       ],
+      [
+        "module-resolver",
+        {
+          alias: {
+            "@": "./",
+            "@components": "./componentes", // usa './app' si tu carpeta principal se llama 'app'
+          },
+        },
+      ],
     ],
   };
 };

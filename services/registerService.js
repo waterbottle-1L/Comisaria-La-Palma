@@ -1,4 +1,4 @@
-import clientUser from "./clientUser";
+import clientApiGateway from "./clientApiGateway";
 
 export const registerService = async (
   dni,
@@ -9,7 +9,7 @@ export const registerService = async (
 ) => {
   try {
     console.log("1. Iniciando petición...");
-    const response = await clientUser.post("/api/users", {
+    const response = await clientApiGateway.post("/api/users", {
       dni,
       name: "",
       lastname: "",

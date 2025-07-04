@@ -1,54 +1,79 @@
 import {useState, useRef, useEffect} from 'react';
 import {StyleSheet, Pressable, Text, View, Dimensions, Animated} from 'react-native';
 import { Map } from './Map';
+import * as Location from 'expo-location';
+import { Alert } from 'react-native';
+import { createIncident } from '../services/createIncident'; // Asegúrate de que esta ruta sea correcta
 
 export function ButtonSOS(){
     
-  const [pressed, setPressed] = useState(false); // Estado para el botón SOS
-  
-  const [showMap, setShowMap] = useState(false); // Estado inicial: false
+  const [pressed, setPressed] = useState(false);
+  const [showMap, setShowMap] = useState(false);
+  const [location, setLocation] = useState(null);
 
-  const pulseAnim = useRef(new Animated.Value(1)).current; // para onda pequeña normal
+  const pulseAnim = useRef(new Animated.Value(1)).current;
+  const clickPulseAnim = useRef(new Animated.Value(1)).current;
 
-  const clickPulseAnim = useRef(new Animated.Value(1)).current; // para onda al click
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulseAnim, {
+          toValue: 1.2,
+          duration: 1000,
+          useNativeDriver: true,
+        }),
+        Animated.timing(pulseAnim, {
+          toValue: 1,
+          duration: 1000,
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  }, []);
 
-    useEffect(() => {
-        Animated.loop(
-          Animated.sequence([
-            Animated.timing(pulseAnim, {
-              toValue: 1.2,
-              duration: 1000,
-              useNativeDriver: true,
-            }),
-            Animated.timing(pulseAnim, {
-              toValue: 1,
-              duration: 1000,
-              useNativeDriver: true,
-            }),
-          ])
-      ).start();
-    }, []);
+  const getLocation = async () => {
+    try {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert('Permiso denegado', 'No se puede acceder a la ubicación');
+        return null;
+      }
 
-  const manejarPresion = () => {
-
-    setPressed(true);
-
-    clickPulseAnim.setValue(1);
-
-    Animated.timing(clickPulseAnim, {
-      
-        toValue: 2.5,
-        duration: 600,
-        useNativeDriver: true,
-
-    }).start(() => {
-
-      clickPulseAnim.setValue(1);
-
-    });
-
-    setShowMap(true); // Cambia el estado a true al presionar el botón
+      let location = await Location.getCurrentPositionAsync({});
+      console.log('Ubicación obtenida:', location.coords.longitude, location.coords.latitude);
+      console.log(typeof location.coords.longitude, typeof location.coords.latitude);
+      return location.coords;
+    } catch (error) {
+      console.error('Error obteniendo ubicación:', error);
+      Alert.alert('Error', 'Hubo un problema al obtener la ubicación');
+      return null;
+    }
   };
+
+  const manejarPresion = async () => {
+  const coords = await getLocation();
+  if (!coords) return; // si no se obtuvo ubicación, salimos
+
+  const lat = parseFloat(coords.latitude);
+  const lng = parseFloat(coords.longitude);
+  console.log('Coordenadas:', lng, lat);
+
+  setLocation({ longitude: lng, latitude: lat }); // <-- CORREGIDO
+  setPressed(true);
+
+  clickPulseAnim.setValue(1);
+
+  Animated.timing(clickPulseAnim, {
+    toValue: 2.5,
+    duration: 600,
+    useNativeDriver: true,
+  }).start(() => {
+    clickPulseAnim.setValue(1);
+  });
+
+  setShowMap(true);
+  createIncident(lng, lat); // <-- suposición de que esta función está definida
+};
   return(
             <View style={styles.container}>
 
@@ -89,7 +114,12 @@ export function ButtonSOS(){
               </Pressable>
               {/* Muestra el mapa cuando showMap es true */}
                 {showMap && (
-                  <Map width={Dimensions.get('window').width} height={'210'} />
+                  <Map
+                  width={Dimensions.get('window').width}
+                  height={'210'}
+                  longitude={location.longitude}
+                  latitude={location.latitude}
+                />
                 )}
             </View>
     );

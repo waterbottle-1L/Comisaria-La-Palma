@@ -18,6 +18,7 @@ export function LoginForm(){
 
           // Guardar token
           await SecureStore.setItemAsync("token", userData.token);
+          await SecureStore.setItemAsync("userId", userData.id);
 
           // Redirigir según el rol
           switch (userData.role) {
@@ -35,6 +36,7 @@ export function LoginForm(){
           }
         } catch (error) {
             Alert.alert('Error de inicio de sesión', 'Por favor, verifica tus credenciales e inténtalo de nuevo.');
+            console.error('Error al iniciar sesión:', error);
           }
   };
     return(

@@ -17,6 +17,7 @@
       "supportsTablet": true
     },
     "android": {
+      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/escudo.png",
         "backgroundColor": "#ffffff"
@@ -24,7 +25,7 @@
       "edgeToEdgeEnabled": true
     },
     "web": {
-      "favicon": "./assets/images/xinojeta.png"
+      "favicon": "./assets/images/escudo.png"
     },
     "plugins": [
       "expo-router",
