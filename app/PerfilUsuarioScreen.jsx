@@ -1,4 +1,4 @@
-import React from 'react';
+import  {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -12,8 +12,28 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
 import { Link } from 'expo-router';
+import { getUserData } from '../services/getUserData';
 
 const PerfilUsuarioScreen = () => {
+
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        const userData = await getUserData();
+        setProfile(userData);
+        console.log("Perfil cargado:", userData);
+      } catch (err) {
+        console.error("Error al cargar el perfil:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadProfile();
+  }, []);
+
   return (
     <View style={styles.container}>
         

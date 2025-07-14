@@ -43,7 +43,7 @@ const { id } = useLocalSearchParams();
   switch (incident.incidentStatus) {
     case "PENDING":
       return <PendingIncident incident={incident} onAttend={() => {}} />;
-    case "ATTENDING":
+    case "IN_PROCESS":
       return <InProcessIncident incident={incident} onSave={() => {}} />;
     case "RESOLVED":
       return <ResolvedIncident incident={incident} />;

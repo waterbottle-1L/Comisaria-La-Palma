@@ -2,7 +2,7 @@ import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 
 // URL del WebSocket — ¡Ojo! solo cambia si tienes un path diferente en tu API Gateway
-const SOCKET_URL = "http://10.218.188.187:8080/api/msvc-notifications/ws";
+const SOCKET_URL = "http://192.168.0.5:8080/api/msvc-notifications/ws";
 
 let stompClient = null;
 

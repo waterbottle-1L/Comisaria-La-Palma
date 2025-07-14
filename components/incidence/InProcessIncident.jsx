@@ -1,12 +1,13 @@
 import { View, Text, Button, TextInput, StyleSheet } from 'react-native';
 import IncidentMap from '../IncidentMap';
+import { router } from 'expo-router';
 
-export default function InProcessIncident({ incident, onSave }) {
+export default function InProcessIncident({ incident }) {
   return (
     <View style={styles.container}>
       <Text style={styles.status}>ATENDIDO</Text>
-      <Button title="REGISTRAR INFORMACION" onPress={onSave} />
-      <Button title="VOLVER" onPress={() => {}} disabled={false} />
+      <Button title="REGISTRAR INFORMACION" onPress={() => router.push('RegisterIncidentInformation', { incident:incident })} />
+      <Button title="VOLVER" onPress={() => {router.back()}} disabled={false} />
 
       <IncidentMap latitude={incident.latitude} longitude={incident.longitude} />
     </View>

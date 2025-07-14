@@ -13,7 +13,7 @@ export default function IncidentMap({ latitude, longitude }) {
   return (
     <MapView style={{ flex: 1 }} region={region}>
       <Marker coordinate={region} />
-      <Circle center={region} radius={100} fillColor="red" />
+      <Circle center={region} radius={40} fillColor="red" />
     </MapView>
   );
 }
