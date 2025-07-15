@@ -9,7 +9,7 @@ export const registerService = async (
 ) => {
   try {
     console.log("1. Iniciando petición...");
-    const response = await clientApiGateway.post("/api/users", {
+    const response = await clientApiGateway.post("/api/auth/register", {
       dni,
       name: "",
       lastname: "",
