@@ -17,12 +17,16 @@
       "supportsTablet": true
     },
     "android": {
-      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"],
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/escudo.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.solipsist17.ComisariaLaPalma"
     },
     "web": {
       "favicon": "./assets/images/escudo.png"
@@ -30,6 +34,12 @@
     "plugins": [
       "expo-router",
       "expo-secure-store"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "c4a206cd-e9e3-4298-845a-7b44ba8625f8"
+      }
+    }
   }
 }
